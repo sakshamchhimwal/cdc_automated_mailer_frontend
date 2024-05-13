@@ -1,8 +1,9 @@
 import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import { theme } from "../theme";
 import Header from "./components/Header/Header";
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 
 export const metadata = {
 	title: "CDC Mailer",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: any }) {
 			<body>
 				<MantineProvider forceColorScheme="dark">
 					<Header />
+					<Notifications position="top-right" />
 					{children}
 				</MantineProvider>
 			</body>
