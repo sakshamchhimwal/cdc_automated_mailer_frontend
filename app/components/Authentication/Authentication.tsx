@@ -13,7 +13,7 @@ import {
 	CheckIcon,
 } from "@mantine/core";
 import classes from "./Authentication.module.css";
-import { LoginSchema } from "../../utils/schemas/loginSchema";
+import { LoginSchema } from "../../utils/FormSchemas/loginSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormSchema } from "../../utils/types";

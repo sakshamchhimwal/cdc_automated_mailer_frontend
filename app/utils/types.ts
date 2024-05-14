@@ -1,5 +1,5 @@
 import z from 'zod'
-import { LoginSchema } from './schemas/loginSchema'
+import { LoginSchema } from './FormSchemas/loginSchema'
 
 type FormSchema = z.infer<typeof LoginSchema>
 
