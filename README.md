@@ -1,5 +1,13 @@
-# Mantine Next Template
+# CDC Mailer Frontend
 
-Get started with the template by clicking `Use this template` button on the top of the page.
+Get started
 
-[Documentation](https://mantine.dev/guides/next/)
+## Install Deps
+```
+yarn add
+```
+
+## Start in Dev
+```
+yarn run dev
+```
