@@ -1,3 +1,9 @@
+import { DataTable } from "./components/DataTable/DataTable";
+
 export default function HomePage() {
-	return <div>Home page</div>;
+	return (
+		<div>
+			<DataTable />
+		</div>
+	);
 }

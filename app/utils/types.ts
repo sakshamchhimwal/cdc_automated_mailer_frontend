@@ -10,7 +10,26 @@ type APIResponse = {
   token?: string
 }
 
+type CompanyDetails = {
+  ID: number
+  CreatedAt: string
+  UpdatedAt: string
+  DeletedAt: any
+  companyName: string
+  hrEmail: string
+  companyAbout: string
+  companyCareers: string
+  template1: string
+  template2: string
+  template3: string
+  mailSent: boolean
+  mailVerified: boolean
+  templateUsed: number
+  handlerID: number
+}
+
 export type {
   FormSchema,
-  APIResponse
+  APIResponse,
+  CompanyDetails
 }

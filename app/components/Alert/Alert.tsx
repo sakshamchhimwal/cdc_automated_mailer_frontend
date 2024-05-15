@@ -1,11 +1,5 @@
 import { Alert } from "@mantine/core";
-
-export enum Colors {
-	RED = "red",
-	CYAN = "cyan",
-	GREEN = "green",
-	YELLOW = "yellow",
-}
+import Colors from "../../utils/colors";
 
 type Props = {
 	children: any;

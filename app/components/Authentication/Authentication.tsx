@@ -10,7 +10,6 @@ import {
 	Container,
 	Group,
 	Button,
-	CheckIcon,
 } from "@mantine/core";
 import classes from "./Authentication.module.css";
 import { LoginSchema } from "../../utils/FormSchemas/loginSchema";
@@ -20,18 +19,15 @@ import { FormSchema } from "../../utils/types";
 import { userLogin } from "../../api/loginHandler";
 import { notifications } from "@mantine/notifications";
 import { IconExclamationCircle, IconChecks } from "@tabler/icons-react";
-
-export enum Colors {
-	RED = "red",
-	CYAN = "cyan",
-	GREEN = "green",
-	YELLOW = "yellow",
-}
+import { useRouter } from "next/navigation";
+import Colors from "../../utils/colors";
 
 const Authentication = () => {
 	const form = useForm<FormSchema>({
 		resolver: zodResolver(LoginSchema),
 	});
+
+	const router = useRouter();
 
 	const onSubmit = async (data: FormSchema) => {
 		const response = await userLogin(data);
@@ -46,8 +42,21 @@ const Authentication = () => {
 		} else {
 			if (response.token)
 				localStorage.setItem("CDC_USER_TOKEN", response.token);
+
+			if (response.data) {
+				localStorage.setItem(
+					"USER_DATA",
+					JSON.stringify(response.data)
+				);
+				if (response.data?.userSignUp === true) {
+					router.push("/");
+				} else {
+					router.push("/passwordReset");
+				}
+			}
+
 			notifications.show({
-				title: "Error",
+				title: "Success",
 				message: response.message,
 				color: Colors.GREEN,
 				icon: <IconChecks stroke={1} />,
