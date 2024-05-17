@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios"
-import { APIResponse, FormSchema } from "../utils/types"
+import { APIResponse } from "../utils/types"
 import { SEND_MAIL, USER_MAILING_COMPANIES } from "../utils/urlConstants"
 
 const getMailingList = async (): Promise<APIResponse> => {

@@ -2,8 +2,7 @@
 import axios from "axios"
 import { APIResponse } from "../utils/types"
 import { USER_MAILING_COMPANIES, USER_UPDATE_TEMPLATE } from "../utils/urlConstants"
-import { revalidatePath } from "next/cache"
-import { number } from "zod"
+
 
 const getCompanyDetails = async (id: number): Promise<APIResponse> => {
   const AUTH_TOKEN = localStorage.getItem("CDC_USER_TOKEN")

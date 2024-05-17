@@ -1,12 +1,14 @@
 "use client";
 
-import { Box, Button, Checkbox, Divider, Title } from "@mantine/core";
+import { Box, Button, Checkbox, Divider, Textarea, Title } from "@mantine/core";
 import { useState } from "react";
 
 const TemplateChecklistForm = ({
 	handleSubmit,
+	isVerifyLoading,
 }: {
 	handleSubmit: () => any;
+	isVerifyLoading: boolean;
 }) => {
 	const [parameters, setParameters] = useState<any>({
 		Remove_Subject_Line: false,
@@ -31,7 +33,24 @@ const TemplateChecklistForm = ({
 			<Title order={3} pb={20}>
 				Verify
 			</Title>
-
+			<Title order={4} p={20} style={{ color: "red" }}>
+				Add this text to the template if needed.
+			</Title>
+			<Textarea
+				cols={30}
+				rows={5}
+				value='Additionally, if you wish to participate, we have included a <a href="https://cdc.iitdh.ac.in/portal/jnf">JNF</a> that needs to be filled out before moving forward with further proceedings.'
+			/>
+			<Button
+				onClick={() => {
+					navigator.clipboard.writeText(
+						"Additionally, if you wish to participate, we have included a <a href='https://cdc.iitdh.ac.in/portal/jnf'>JNF</a> that needs to be filled out before moving forward with further proceedings."
+					);
+				}}
+				m={10}
+			>
+				Copy and Paste
+			</Button>
 			{Object.keys(parameters).map((key) => {
 				const query = key.replaceAll("_", " ");
 				return (
@@ -57,7 +76,11 @@ const TemplateChecklistForm = ({
 					</>
 				);
 			})}
-			<Button disabled={!allChecked} onClick={handleSubmit} m={10}>
+			<Button
+				disabled={!allChecked || isVerifyLoading}
+				onClick={handleSubmit}
+				m={10}
+			>
 				Verify
 			</Button>
 		</Box>

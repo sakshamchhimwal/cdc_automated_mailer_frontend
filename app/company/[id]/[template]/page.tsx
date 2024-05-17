@@ -1,15 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { APIResponse } from "../../../utils/types";
-import { getCompanyDetails, updateTemplate } from "../../../api/companyHandler";
+import { APIResponse } from "../../../../utils/types";
+import {
+	getCompanyDetails,
+	updateTemplate,
+} from "../../../../api/companyHandler";
 import { Box, Button, Center, Divider, Textarea, Title } from "@mantine/core";
-import TemplateChecklistForm from "../../../components/TemplateCheckListForm/TemplateChecklistForm";
+import TemplateChecklistForm from "../../../../components/TemplateCheckListForm/TemplateChecklistForm";
 import { notifications } from "@mantine/notifications";
-import Colors from "../../../utils/colors";
+import Colors from "../../../../utils/colors";
 import { IconChecks, IconExclamationCircle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { sendMail } from "../../../api/userHandler";
+import { sendMail } from "../../../../api/userHandler";
 
 export default function MailDetails({
 	params,
@@ -18,6 +21,8 @@ export default function MailDetails({
 }) {
 	const [currentTemplate, setCurrentTemplate] = useState<string>("");
 	const [isVerified, setIsVerified] = useState(false);
+	const [isVerifyLoading, setIsVerifyLoading] = useState(false);
+	const [isMailSending, setIsMailSending] = useState(false);
 	const router = useRouter();
 
 	const getAndSetData = useCallback(async () => {
@@ -35,6 +40,7 @@ export default function MailDetails({
 	}, [getAndSetData]);
 
 	const handleSubmit = async () => {
+		setIsVerifyLoading(true);
 		const response = await updateTemplate(
 			params.id,
 			params.template,
@@ -66,9 +72,11 @@ export default function MailDetails({
 				router.push("/login");
 			}
 		}
+		setIsVerifyLoading(false);
 	};
 
 	const handleSendMail = async () => {
+		setIsMailSending(true);
 		const response = await sendMail(params.id, params.template);
 		if (response.status === 200) {
 			notifications.show({
@@ -96,6 +104,7 @@ export default function MailDetails({
 				router.push("/login");
 			}
 		}
+		setIsMailSending(false);
 	};
 
 	return (
@@ -120,7 +129,10 @@ export default function MailDetails({
 						flexDirection: "column",
 					}}
 				>
-					<TemplateChecklistForm handleSubmit={handleSubmit} />
+					<TemplateChecklistForm
+						handleSubmit={handleSubmit}
+						isVerifyLoading={isVerifyLoading}
+					/>
 					<Box
 						display="flex"
 						style={{
@@ -128,7 +140,7 @@ export default function MailDetails({
 						}}
 					>
 						<Button
-							disabled={!isVerified}
+							disabled={!isVerified || isMailSending}
 							onClick={handleSendMail}
 							m={10}
 							w="min-content"

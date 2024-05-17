@@ -10,6 +10,7 @@ import { IconExclamationCircle } from "@tabler/icons-react";
 import Colors from "../../utils/colors";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { fetchFromLocalStorage } from "../../utils/fetchFromLocalStorage";
 
 const RenderTable = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 	const [scrolled, setScrolled] = useState(false);
@@ -121,13 +122,13 @@ export function DataTable() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const checkAndSetIsLoggedIn = useCallback(() => {
-		const token = localStorage.getItem("CDC_USER_TOKEN");
+		const token = fetchFromLocalStorage("CDC_USER_TOKEN");
 		if (!token) {
 			setIsLoggedIn(false);
 		} else {
 			setIsLoggedIn(true);
 		}
-	}, [localStorage]);
+	}, [fetchFromLocalStorage]);
 
 	useEffect(() => {
 		checkAndSetIsLoggedIn();

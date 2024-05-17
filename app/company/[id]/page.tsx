@@ -1,9 +1,9 @@
 "use client";
-import CompanyDetailsCard from "../../components/CompanyDetails/CompanyDetails";
-import { getCompanyDetails } from "../../api/companyHandler";
-import CompanyMailCard from "../../components/CompanyMailCard/CompanyMailCard";
+import CompanyDetailsCard from "../../../components/CompanyDetails/CompanyDetails";
+import { getCompanyDetails } from "../../../api/companyHandler";
+import CompanyMailCard from "../../../components/CompanyMailCard/CompanyMailCard";
 import { useCallback, useEffect, useState } from "react";
-import { APIResponse } from "../../utils/types";
+import { APIResponse } from "../../../utils/types";
 import { Box } from "@mantine/core";
 
 export default function CompanyDetails({ params }: { params: { id: number } }) {

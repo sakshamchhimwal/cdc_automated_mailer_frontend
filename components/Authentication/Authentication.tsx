@@ -44,10 +44,7 @@ const Authentication = () => {
 				localStorage.setItem("CDC_USER_TOKEN", response.token);
 
 			if (response.data) {
-				localStorage.setItem(
-					"USER_DATA",
-					JSON.stringify(response.data)
-				);
+				localStorage.setItem("USER_DATA", JSON.stringify(response.data));
 				if (response.data?.userSignUp === true) {
 					router.push("/");
 				} else {

@@ -112,9 +112,7 @@ const ResetPassword = () => {
 					value={data.password}
 					onChange={handleChange}
 				/>
-				{errorMessage && (
-					<div style={{ color: "red" }}>{errorMessage}</div>
-				)}
+				{errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 				<PasswordInput
 					label="Verify New Password"
 					name="newPassword"
@@ -123,15 +121,8 @@ const ResetPassword = () => {
 					onChange={handleChange}
 				/>
 
-				<Group
-					justify="space-between"
-					mt="lg"
-					className={classes.controls}
-				>
-					<Button
-						className={classes.control}
-						onClick={confirmPassword}
-					>
+				<Group justify="space-between" mt="lg" className={classes.controls}>
+					<Button className={classes.control} onClick={confirmPassword}>
 						Reset password
 					</Button>
 				</Group>

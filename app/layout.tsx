@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import Header from "./components/Header/Header";
+import Header from "../components/Header/Header";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 
